@@ -4,11 +4,13 @@ import axios from 'axios';
 import { BASE_URL } from '../../config'; // Import the base URL
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate(); 
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,7 +27,7 @@ export default function Login() {
         
         // Display success message using Toastr
         toastr.success('Login successful!', 'Success');
-        
+        navigate('/dashboard'); // Redirect to dashboard on successful login
         // Redirect user or update the UI as needed
       } else {
         setErrorMessage('Invalid login credentials');
